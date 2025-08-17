@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — 2024</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --page-bg:#99cdd8;    /* dark page background */
+    --paper: #fff;      /* the paper color */
+    --paper-muted: #f3c3b2;/* grid line color */
+    --ink: #145;
+    --muted: #9b9ba3;
+    --chip: red;
+    --max-width: 1100px;
+
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: radial-gradient(1200px 600px at 20% -10%, #f3c3b2 0%, var(--page-bg) 60%) fixed;
+    color: #fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding: 32px 20px;
+  } 
+
+  .wrap{max-width:var(--max-width); margin: 0 auto;}
+
+  /* ---------- Header (paper) ---------- */
+  header.portfolio-paper{
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 20px 20px 0 0;
+    padding: 44px 34px 120px 34px;
+    overflow: visible;
+    box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  }
+
+  /* subtle grid-paper using CSS gradients (repeat) */
+  header.portfolio-paper::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(transparent 31px, var(--paper-muted) 32px) 0 0/100% 32px,
+      linear-gradient(90deg, transparent 31px, var(--paper-muted) 32px) 0 0/32px 100%,
+      var(--paper);
+    opacity: .95;
+    border-radius: 20px 20px 0 0;
+  }
+
+  /* smooth wave bottom */
+  header.portfolio-paper::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height:80px;
+    background: var(--page-bg);
+    border-radius: 100% 100% 0 0 / 40px;
+    z-index:2;
+  }
+
+  /* Title area */
+  .title{
+    position: relative;
+    z-index: 3; /* on top of ::before */
+    display:flex;
+    gap:20px;
+    align-items:end;
+    flex-wrap:wrap;
+  }
+  .title h1{
+    margin:0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(40px, 8vw, 84px);
+    line-height: .9;
+    letter-spacing: .5px;
+    color: #111;
+  }
+  .year-badge{
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:28px;
+    border: 2px solid rgba(0,0,0,.12);
+    transform: rotate(-8deg);
+    background: #fff;
+    color:#222;
+    box-shadow: 0 4px 10px rgba(0,0,0,.06);
+    margin-left:6px;
+  }
+  .subtitle{ margin-top:8px; color: #333; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:14px;}
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--chip); display:inline-block }
+
+  /* ---------- Main content (dark) ---------- */
+  main{
+    margin-top: -40px; /* less overlap since smooth curve */
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.55);
+    position: relative;
+  }
+
+  /* two-column layout */
+  .grid{ display:grid; gap:28px; grid-template-columns: 1fr 1.1fr; align-items:start; }
+  @media (max-width:900px){ .grid{ grid-template-columns:1fr } main{ margin-top:-20px } }
+
+  /* polaroid card */
+  .card{
+    background:#15151a;
+    padding:18px;
+    border-radius:16px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.03), 0 12px 30px rgba(0,0,0,.6);
+    position:relative;
+    overflow:visible;
+  }
+  .tape{
+    position:absolute;
+    left:22px; top:12px;
+    width:84px; height:28px;
+    background: linear-gradient(#fef3c7,#fde68a);
+    transform: rotate(-6deg);
+    border-radius:6px; box-shadow: 0 6px 8px rgba(0,0,0,.25);
+  }
+  .polaroid{
+    background:#f6f3ee;
+    padding:10px; border-radius:8px;
+    transform: rotate(-2deg);
+    display:inline-block;
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  }
+  .polaroid img{
+    display:block; width:240px; height:320px; object-fit:cover; border-radius:6px;
+  }
+  .polaroid .name{
+    margin-top:10px; font-weight:600; color:#0b0b0b;
+    padding:6px 8px; border-radius:6px; font-size:16px;
+  }
+
+  /* right column content */
+  .hello h2{ font-family:"Playfair Display", serif; margin:0 0 6px 0; color:#fff; font-size:34px; }
+  .hello p{ margin:0; color:var(--muted); max-width:540px; }
+  .contact{ margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+  .contact .btn{ display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:10px; background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,.03); cursor:pointer; color: #fff; font-weight:600; }
+  .contact .btn .ico{ font-size:18px; opacity:.95 }
+
+  /* sections */
+  section h3{ margin: 18px 0 8px 0; font-size:20px; color:#fff; font-weight:700; }
+  .muted{ color:var(--muted); font-size:14px; }
+
+  .software .icons{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px }
+  .chip{ display:inline-block; padding:6px 10px; border-radius:12px; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.03); color:#fff; font-size:13px; margin:6px 6px 0 0; }
+
+  footer{ text-align:center; color:var(--muted); font-size:13px; margin-top:20px; padding-bottom:20px;}
+  @media (max-width:520px){
+    .polaroid img{ width:180px; height:240px }
+    header.portfolio-paper{ padding:28px 20px 110px 20px }
+    .title h1{ font-size:36px }
+  }  
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- PAPER HEADER -->
+    <header class="portfolio-paper" aria-labelledby="site-title">
+      <div style="position:relative; z-index:3;">
+        <div class="title">
+          <h1 id="site-title">Portfolio</h1>
+          <div class="year-badge">2025</div>
+        </div>
+
+        <div class="subtitle">
+          <span class="muted">Graphic Design</span>
+          <span class="dot"></span>
+          <span class="muted">Digital Art</span>
+          <span class="dot"></span>
+          <span class="muted">Web Devlopment</span>
+          
+       <span class="dot"></span>
+          <span class="muted">Sketch-Artist</span>   
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <div class="grid">
+        <!-- LEFT -->
+        <div class="card">
+          <div class="tape"></div>
+          <div class="polaroid">
+            <img src="https://i.ibb.co/cX3CT0F3/1000474607-01.jpg" alt="Profile photo">
+            <div class="name">Debansu Das</div>
+          </div>
+          <div style="margin-top:18px;">
+            <h3>Education</h3>
+            <div class="muted"><b>2024-2026</b><br>Science stream <br><small>Hattuba Adarsha Bidyapith</small>
+            
+              <br> <b> 2024-2025</b><br> HTML,Py,Web-Devolepment
+            </div>
+
+            
+            <h3 style="margin-top:18px">Personal</h3>
+            <div>
+              <span class="chip">Adaptable</span>
+              <span class="chip">Teamwork</span>
+              <span class="chip">Positive Attitude</span>
+              <span class="chip">Desire to Learn</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+          <div class="hello">
+            <h2>Hello !</h2>
+            <p>Hi, my name is <strong>Debansu Das</strong>. I am a graphic designer and web devoleper based in India with a passion for art, drawing, and visual communication. I focus on branding, social media creatives, posters and websites — crafting designs that captivate and communicate clearly.</p>
+
+            <div class="contact">
+              <button class="btn" id="whatsappBtn">
+                <span class="ico">📱</span> <span>+91 89272 14652</span>
+              </button>
+              <a class="btn" href="debansudas04@gmail.com">
+                <span class="ico">✉️</span> debansudas@gmail.com
+              </a>
+              <a class="btn" href="https://www.facebook.com/share/1CRN5vihTZ/">
+                <span class="ico">🔗</span> Facebook
+              </a>
+              <a class="btn" href="https://www.instagram.com/mr_debansu15?igsh=ZHUyZmtqc2w2aXJt">
+                <span class="ico">📸</span> Instagram
+              </a>
+            </div>
+          </div>
+
+          <section>
+            <h3>Experience</h3>
+            <div class="muted">
+              <strong>2024 — Present</strong> | U&I Trust — Graphic Design Artist<br>
+              <small>Strategizing and branding campaigns; designing merch and social media posts.</small>
+            </div>
+            <div style="margin-top:12px" class="muted">
+              <strong>2024 — 2025</strong> | Diffusion Marketing Solutions — Creative web devoloper<br>
+              <small>Designed marketing artworks for cafes, hotels and makes creative web sites.</small>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      Page created by <strong>Debansu Das</strong> • © 2025
+    </footer>
+  </div>
+
+  <script>
+  (function(){
+    const wBtn = document.getElementById('whatsappBtn');
+    wBtn && wBtn.addEventListener('click', async () => {
+      const num = '+918927214652';
+      try {
+        await navigator.clipboard.writeText(num);
+        const old = wBtn.innerHTML;
+        wBtn.innerHTML = '✅ Copied';
+        setTimeout(()=> wBtn.innerHTML = old, 1600);
+      } catch(e){
+        alert('Copied: ' + num);
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
